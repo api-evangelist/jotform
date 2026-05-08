@@ -1,0 +1,29 @@
+aid: jotform
+url: https://raw.githubusercontent.com/api-evangelist/jotform/refs/heads/main/apis.yml
+name: Jotform
+x-type: company
+description: >-
+  Jotform is an online form builder with strong workflow, payments, and data-collection capabilities. APIs cover forms, submissions, users, and folders.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Forms
+  - Surveys
+  - No-Code
+  - Data Collection
+  - Workflow
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.jotform.com/
+  - type: Plans
+    url: plans/jotform-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/jotform-rate-limits.yml
+  - type: FinOps
+    url: finops/jotform-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
