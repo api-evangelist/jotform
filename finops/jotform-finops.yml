@@ -5,7 +5,7 @@ provider: Jotform
 providerId: jotform
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - Forms
 - Surveys
@@ -15,10 +15,16 @@ tags:
 - FinOps
 - Cost Management
 - FOCUS
-description: FOCUS-aligned FinOps placeholder for Jotform. Pipeline will replace with real billing details.
-notes: Initial scaffold — billing model has not yet been reconciled.
+description: >-
+  FOCUS-aligned FinOps profile for Jotform. Costs are flat monthly tier fees
+  (Starter free / Bronze $39 / Silver $49 / Gold $129 / Enterprise custom)
+  with implicit ceilings on active forms, monthly submissions, storage and
+  daily API calls. Annual billing reduces effective rate.
+notes: >-
+  Optimisation is mostly about right-sizing the tier — submissions, storage
+  and API daily-call rates are the dominant scaling drivers.
 sources:
-- https://www.jotform.com/
+- https://www.jotform.com/pricing/
 - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
@@ -27,10 +33,10 @@ alignedWith:
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 publisherName: Jotform
-serviceCategory: Forms
+serviceCategory: Forms / Workflow
 billingModel:
-  pricingCategory: To Be Reconciled
-  billingFrequency: Monthly
+  pricingCategory: Subscription (tiered ceilings)
+  billingFrequency: Monthly / Annual
   billingCurrency: USD
   chargeCategories:
   - Usage
@@ -43,24 +49,50 @@ focusColumns:
   PublisherName: Jotform
   InvoiceIssuerName: Jotform
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
+  PricingUnit: plan-month
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation.
-  unit: varies
+- name: plan_subscription
+  description: Flat plan fee (Bronze/Silver/Gold/Enterprise).
+  unit: month
   aggregation: sum
   dimensions:
   - account
-  - resource
+  - plan
+- name: monthly_submissions
+  description: Form submissions counted against the plan's monthly ceiling.
+  unit: submission
+  aggregation: sum
+  dimensions:
+  - account
+  - form
+- name: active_forms
+  description: Active forms in the account (counts toward plan ceiling).
+  unit: form
+  aggregation: max
+  dimensions:
+  - account
+- name: storage
+  description: File and submission storage used.
+  unit: GB-month
+  aggregation: avg
+  dimensions:
+  - account
+- name: api_calls
+  description: Daily API calls counted against tier daily ceiling.
+  unit: request
+  aggregation: sum
+  dimensions:
+  - account
 principles:
 - name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
+  description: Use the Jotform admin Usage page; export submission counts per form.
 - name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
+  description: Use sub-accounts (Enterprise) or form-naming conventions to allocate by team.
 - name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
+  description: Archive low-traffic forms; right-size tier annually; prefer webhooks over /submissions polling to keep API calls low.
 - name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  description: Assign account owners; alert at 75% of plan submission ceiling.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

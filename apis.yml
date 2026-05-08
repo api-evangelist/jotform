@@ -3,7 +3,11 @@ url: https://raw.githubusercontent.com/api-evangelist/jotform/refs/heads/main/ap
 name: Jotform
 x-type: company
 description: >-
-  Jotform is an online form builder with strong workflow, payments, and data-collection capabilities. APIs cover forms, submissions, users, and folders.
+  Jotform is an online form builder with strong workflow, payments and data
+  collection capabilities. The Jotform API exposes forms, submissions, reports,
+  folders, users, files and webhooks across three regional/compliance
+  endpoints (US standard, EU, HIPAA). API-key authentication via header or
+  query string.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Forms
@@ -11,13 +15,68 @@ tags:
   - No-Code
   - Data Collection
   - Workflow
+  - HIPAA
+  - EU
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: jotform:rest-us
+    name: Jotform REST API (Standard / US)
+    description: >-
+      Standard Jotform API. Read/write access to forms, submissions, reports,
+      folders, files, system, user and webhooks endpoints. APIKEY header
+      authentication.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://api.jotform.com/docs/
+    baseURL: https://api.jotform.com
+    tags:
+      - REST
+      - Forms
+      - Submissions
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://api.jotform.com/docs/
+      - type: Authentication
+        url: https://api.jotform.com/docs/#authentication
+      - type: SDK
+        url: https://github.com/jotform
+  - aid: jotform:rest-eu
+    name: Jotform REST API (EU)
+    description: >-
+      EU-resident variant of the Jotform API for customers on EU plans / EU
+      data residency.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://api.jotform.com/docs/
+    baseURL: https://eu-api.jotform.com
+    tags:
+      - REST
+      - EU
+      - Data Residency
+  - aid: jotform:rest-hipaa
+    name: Jotform REST API (HIPAA)
+    description: >-
+      HIPAA-compliant variant of the Jotform API for healthcare customers on
+      Gold/Enterprise tiers.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://api.jotform.com/docs/
+    baseURL: https://hipaa-api.jotform.com
+    tags:
+      - REST
+      - HIPAA
+      - Healthcare
 common:
   - type: Website
     url: https://www.jotform.com/
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Pricing
+    url: https://www.jotform.com/pricing/
+  - type: GitHub
+    url: https://github.com/jotform
+  - type: StatusPage
+    url: https://status.jotform.com/
   - type: Plans
     url: plans/jotform-plans-pricing.yml
   - type: RateLimits

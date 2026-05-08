@@ -5,7 +5,7 @@ provider: Jotform
 providerId: jotform
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - Forms
 - Surveys
@@ -15,21 +15,67 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Jotform. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: >-
+  Jotform applies a daily API-call ceiling tied to the subscription tier
+  (1K Starter, 10K Bronze, 50K Silver, 100K Gold, unlimited Enterprise).
+  Submissions, active forms and storage are also tier-bounded.
+notes: >-
+  Reaching the daily ceiling returns 429-equivalent throttle responses.
+  Numeric per-second limits are not separately published; the daily ceiling
+  is the dominant constraint.
 sources:
-- https://www.jotform.com/
+- https://api.jotform.com/docs/#rate-limits
+- https://www.jotform.com/pricing/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
+- name: Daily API calls — Starter
   scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  metric: requests
+  limit: 1000
+  timeFrame: 1d
+- name: Daily API calls — Bronze
+  scope: account
+  metric: requests
+  limit: 10000
+  timeFrame: 1d
+- name: Daily API calls — Silver
+  scope: account
+  metric: requests
+  limit: 50000
+  timeFrame: 1d
+- name: Daily API calls — Gold
+  scope: account
+  metric: requests
+  limit: 100000
+  timeFrame: 1d
+- name: Daily API calls — Enterprise
+  scope: account
+  metric: requests
+  limit: -1
+  timeFrame: 1d
+  notes: Unlimited.
+- name: Submissions per month — Starter
+  scope: account
+  metric: submissions/month
+  limit: 100
+- name: Submissions per month — Bronze
+  scope: account
+  metric: submissions/month
+  limit: 1000
+- name: Submissions per month — Silver
+  scope: account
+  metric: submissions/month
+  limit: 2500
+- name: Submissions per month — Gold
+  scope: account
+  metric: submissions/month
+  limit: 10000
 policies:
 - name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  description: Pace API calls; cache reads; use webhooks for submissions instead of polling /submissions.
+- name: Region selection
+  description: Use the EU or HIPAA endpoint for the matching plan/data-residency tier.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
