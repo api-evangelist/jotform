@@ -83,6 +83,53 @@ common:
     url: rate-limits/jotform-rate-limits.yml
   - type: FinOps
     url: finops/jotform-finops.yml
+  - type: Integrations
+    url: https://www.jotform.com/integrations/
+integrations:
+  - name: Microsoft Excel NEW
+  - name: Microsoft SharePoint NEW
+  - name: Microsoft Teams
+  - name: PayPal
+  - name: Slack
+  - name: Google Sheets
+  - name: Mailchimp
+  - name: Google Calendar
+  - name: Salesforce
+  - name: Canva
+  - name: Hubspot
+  - name: Zoho CRM
+  - name: Active Campaign
+  - name: Pipedrive
+  - name: Zendesk
+  - name: Insightly
+  - name: Keap
+  - name: EngageBay
+  - name: Google Drive
+  - name: Dropbox
+  - name: OneDrive
+  - name: Box
+  - name: Egnyte
+  - name: FTP
+  - name: Galleria
+  - name: Square
+  - name: Stripe
+  - name: Authorize.Net
+  - name: Apple Pay & Google Pay
+  - name: Paysafe
+  - name: Mollie
+  - name: Venmo
+  - name: Constant Contact
+  - name: AWeber
+  - name: GetResponse
+  - name: Google Contacts
+  - name: iContact
+  - name: Zapier
+  - name: IFTTT
+  - name: Unito
+  - name: Pabbly Connect
+  - name: Tray.io
+  - name: Omnisend
+  - name: AI Tools
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
