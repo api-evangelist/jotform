@@ -1,7 +1,7 @@
 aid: jotform
 url: https://raw.githubusercontent.com/api-evangelist/jotform/refs/heads/main/apis.yml
 name: Jotform
-x-type: company
+kind: company
 description: >-
   Jotform is an online form builder with strong workflow, payments and data
   collection capabilities. The Jotform API exposes forms, submissions, reports,
