@@ -67,6 +67,8 @@ apis:
       - HIPAA
       - Healthcare
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/jotform
   - type: Website
     url: https://www.jotform.com/
   - type: Documentation
