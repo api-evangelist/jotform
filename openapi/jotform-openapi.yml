@@ -1,0 +1,603 @@
+openapi: 3.1.0
+info:
+  title: Jotform REST API
+  description: |
+    Jotform is an online form builder. The REST API exposes forms,
+    submissions, reports, folders, users, files, system, labels and webhooks.
+    Authentication is performed with an API key sent either as the APIKEY
+    HTTP header or the apiKey query string parameter. The API is available on
+    three regional/compliance hostnames: standard (api.jotform.com), EU
+    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).
+  version: "1.0.0"
+  contact:
+    name: Jotform API Documentation
+    url: https://api.jotform.com/docs/
+servers:
+  - url: https://api.jotform.com
+    description: Standard (US)
+  - url: https://eu-api.jotform.com
+    description: EU
+  - url: https://hipaa-api.jotform.com
+    description: HIPAA
+security:
+  - ApiKeyHeader: []
+  - ApiKeyQuery: []
+tags:
+  - name: User
+  - name: Form
+  - name: Submission
+  - name: Report
+  - name: Folder
+  - name: Webhook
+  - name: Label
+  - name: System
+paths:
+  /user:
+    get:
+      tags: [User]
+      summary: Get user details
+      operationId: getUser
+      responses:
+        '200':
+          description: User account information.
+  /user/usage:
+    get:
+      tags: [User]
+      summary: Get monthly user API usage and limits
+      operationId: getUserUsage
+      responses:
+        '200':
+          description: Usage information.
+  /user/settings:
+    get:
+      tags: [User]
+      summary: Get user account settings
+      operationId: getUserSettings
+      responses:
+        '200':
+          description: Settings collection.
+    post:
+      tags: [User]
+      summary: Update user account settings
+      operationId: updateUserSettings
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email: { type: string }
+                website: { type: string }
+                name: { type: string }
+                company: { type: string }
+      responses:
+        '200':
+          description: Updated settings.
+  /user/settings/{settingsKey}:
+    get:
+      tags: [User]
+      summary: Get a single user settings value by key
+      operationId: getUserSettingByKey
+      parameters:
+        - in: path
+          name: settingsKey
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Settings value. }
+  /user/history:
+    get:
+      tags: [User]
+      summary: Get user activity log
+      operationId: getUserHistory
+      responses:
+        '200': { description: Activity log entries. }
+  /user/submissions:
+    get:
+      tags: [User, Submission]
+      summary: List all submissions across all forms owned by the user
+      operationId: getUserSubmissions
+      responses:
+        '200': { description: Submission collection. }
+  /user/subusers:
+    get:
+      tags: [User]
+      summary: List sub-users of the account
+      operationId: getUserSubusers
+      responses:
+        '200': { description: Sub-user collection. }
+  /user/reports:
+    get:
+      tags: [User, Report]
+      summary: List reports across all forms owned by the user
+      operationId: getUserReports
+      responses:
+        '200': { description: Report collection. }
+  /user/forms:
+    get:
+      tags: [User, Form]
+      summary: List forms owned by the user
+      operationId: getUserForms
+      responses:
+        '200': { description: Form collection. }
+  /user/folders:
+    get:
+      tags: [User, Folder]
+      summary: List the user's folder tree
+      operationId: getUserFolders
+      responses:
+        '200': { description: Folder tree. }
+  /user/register:
+    post:
+      tags: [User]
+      summary: Register a new Jotform user account
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [username, password, email]
+              properties:
+                username: { type: string }
+                password: { type: string }
+                email: { type: string }
+      responses:
+        '200': { description: Newly registered user. }
+  /user/login:
+    post:
+      tags: [User]
+      summary: Log a user in and obtain an app key
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [username, password]
+              properties:
+                username: { type: string }
+                password: { type: string }
+                appName: { type: string }
+                access: { type: string }
+      responses:
+        '200': { description: Login response with appKey. }
+  /v1/user/logout:
+    get:
+      tags: [User]
+      summary: Log the current user out and invalidate the app key
+      operationId: logoutUser
+      responses:
+        '200': { description: Logout confirmation. }
+  /form/{formID}:
+    get:
+      tags: [Form]
+      summary: Get information about a form
+      operationId: getForm
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Form metadata. }
+    delete:
+      tags: [Form]
+      summary: Delete a form
+      operationId: deleteForm
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Deletion result. }
+  /form/{formID}/questions:
+    get:
+      tags: [Form]
+      summary: List all questions in a form
+      operationId: getFormQuestions
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Question collection. }
+  /form/{formID}/question/{questionID}:
+    get:
+      tags: [Form]
+      summary: Get a single question by ID
+      operationId: getFormQuestion
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+        - in: path
+          name: questionID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Question. }
+    delete:
+      tags: [Form]
+      summary: Delete a question from a form
+      operationId: deleteFormQuestion
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+        - in: path
+          name: questionID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Deletion result. }
+  /form/{formID}/properties:
+    get:
+      tags: [Form]
+      summary: Get all properties of a form
+      operationId: getFormProperties
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Properties collection. }
+  /form/{formID}/properties/{propertyKey}:
+    get:
+      tags: [Form]
+      summary: Get a single property value of a form
+      operationId: getFormProperty
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+        - in: path
+          name: propertyKey
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Property value. }
+  /form/{formID}/submissions:
+    get:
+      tags: [Form, Submission]
+      summary: List the submissions of a form
+      operationId: getFormSubmissions
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Submission collection. }
+    post:
+      tags: [Form, Submission]
+      summary: Submit data to a form (create a new submission)
+      operationId: createFormSubmission
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200': { description: Newly created submission. }
+  /form/{formID}/files:
+    get:
+      tags: [Form]
+      summary: List files uploaded to a form
+      operationId: getFormFiles
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: File collection. }
+  /form/{formID}/reports:
+    get:
+      tags: [Form, Report]
+      summary: List reports for a form
+      operationId: getFormReports
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Report collection. }
+    post:
+      tags: [Form, Report]
+      summary: Create a new report for a form
+      operationId: createFormReport
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [title, list_type]
+              properties:
+                title: { type: string }
+                list_type: { type: string, enum: [grid, table, csv, excel, calendar, rss] }
+                fields: { type: string }
+      responses:
+        '200': { description: Newly created report. }
+  /form/{formID}/clone:
+    post:
+      tags: [Form]
+      summary: Clone an existing form
+      operationId: cloneForm
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Newly cloned form. }
+  /form/{formID}/webhooks:
+    get:
+      tags: [Webhook]
+      summary: List webhooks for a form
+      operationId: getFormWebhooks
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      responses:
+        '200': { description: Webhook collection. }
+    post:
+      tags: [Webhook]
+      summary: Register a new webhook for a form
+      operationId: createFormWebhook
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [webhookURL]
+              properties:
+                webhookURL:
+                  type: string
+                  format: uri
+      responses:
+        '200': { description: Newly created webhook. }
+  /form/{formID}/webhooks/{webhookID}:
+    delete:
+      tags: [Webhook]
+      summary: Delete a webhook
+      operationId: deleteFormWebhook
+      parameters:
+        - $ref: '#/components/parameters/FormID'
+        - in: path
+          name: webhookID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Deletion result. }
+  /submission/{submissionID}:
+    get:
+      tags: [Submission]
+      summary: Get a single submission
+      operationId: getSubmission
+      parameters:
+        - in: path
+          name: submissionID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Submission. }
+    post:
+      tags: [Submission]
+      summary: Edit an existing submission
+      operationId: editSubmission
+      parameters:
+        - in: path
+          name: submissionID
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200': { description: Updated submission. }
+    delete:
+      tags: [Submission]
+      summary: Delete a submission
+      operationId: deleteSubmission
+      parameters:
+        - in: path
+          name: submissionID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Deletion result. }
+  /report/{reportID}:
+    get:
+      tags: [Report]
+      summary: Get details of a single report
+      operationId: getReport
+      parameters:
+        - in: path
+          name: reportID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Report. }
+    delete:
+      tags: [Report]
+      summary: Delete a report
+      operationId: deleteReport
+      parameters:
+        - in: path
+          name: reportID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Deletion result. }
+  /folder:
+    post:
+      tags: [Folder]
+      summary: Create a new folder
+      operationId: createFolder
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                color: { type: string }
+                parent: { type: string }
+      responses:
+        '200': { description: Newly created folder. }
+  /folder/{folderID}:
+    get:
+      tags: [Folder]
+      summary: Get folder details
+      operationId: getFolder
+      parameters:
+        - in: path
+          name: folderID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Folder. }
+    put:
+      tags: [Folder]
+      summary: Update a folder
+      operationId: updateFolder
+      parameters:
+        - in: path
+          name: folderID
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                color: { type: string }
+                forms:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: Updated folder. }
+    delete:
+      tags: [Folder]
+      summary: Delete a folder
+      operationId: deleteFolder
+      parameters:
+        - in: path
+          name: folderID
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Deletion result. }
+  /system/plan/{planName}:
+    get:
+      tags: [System]
+      summary: Get account plan limits and pricing
+      operationId: getSystemPlan
+      parameters:
+        - in: path
+          name: planName
+          required: true
+          schema:
+            type: string
+            enum: [FREE, STARTER, BRONZE, SILVER, GOLD, ENTERPRISE]
+      responses:
+        '200': { description: Plan information. }
+  /label:
+    post:
+      tags: [Label]
+      summary: Create a label
+      operationId: createLabel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                color: { type: string }
+      responses:
+        '200': { description: Newly created label. }
+  /label/{labelID}:
+    put:
+      tags: [Label]
+      summary: Update a label
+      operationId: updateLabel
+      parameters:
+        - $ref: '#/components/parameters/LabelID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                color: { type: string }
+      responses:
+        '200': { description: Updated label. }
+    delete:
+      tags: [Label]
+      summary: Delete a label
+      operationId: deleteLabel
+      parameters:
+        - $ref: '#/components/parameters/LabelID'
+      responses:
+        '200': { description: Deletion result. }
+  /label/{labelID}/add-resources:
+    put:
+      tags: [Label]
+      summary: Attach resources (forms, submissions) to a label
+      operationId: addLabelResources
+      parameters:
+        - $ref: '#/components/parameters/LabelID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                resources:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: Updated label. }
+  /label/{labelID}/remove-resources:
+    put:
+      tags: [Label]
+      summary: Remove resources from a label
+      operationId: removeLabelResources
+      parameters:
+        - $ref: '#/components/parameters/LabelID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                resources:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200': { description: Updated label. }
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: APIKEY
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey
+  parameters:
+    FormID:
+      in: path
+      name: formID
+      required: true
+      schema: { type: string }
+      description: Identifier of the Jotform form.
+    LabelID:
+      in: path
+      name: labelID
+      required: true
+      schema: { type: string }
+      description: Identifier of the label.
