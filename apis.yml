@@ -18,7 +18,7 @@ tags:
   - HIPAA
   - EU
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
   - aid: jotform:rest-us
@@ -40,6 +40,10 @@ apis:
         url: https://api.jotform.com/docs/
       - type: Authentication
         url: https://api.jotform.com/docs/#authentication
+      - type: OpenAPI
+        url: openapi/jotform-openapi.yml
+      - type: AsyncAPI
+        url: asyncapi/jotform-asyncapi.yml
       - type: SDK
         url: https://github.com/jotform
   - aid: jotform:rest-eu

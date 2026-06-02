@@ -1,0 +1,118 @@
+asyncapi: '2.6.0'
+info:
+  title: Jotform Webhooks AsyncAPI
+  version: '1.0.0'
+  description: |
+    AsyncAPI definition for Jotform's webhook surface. Jotform delivers a
+    POST request to a configured webhook URL each time a form receives a
+    submission. The request body is sent as multipart/form-data and includes
+    top-level fields identifying the form and submission alongside a
+    rawRequest field carrying the submitted answers as a JSON-encoded
+    string.
+
+    Webhooks are registered per form via the REST API endpoint
+    POST /form/{formID}/webhooks (see the Jotform REST OpenAPI for
+    registration / listing / deletion).
+
+    Source of payload structure: Jotform developer documentation and help
+    articles describing webhook setup (https://api.jotform.com/docs/,
+    https://www.jotform.com/help/245-how-to-setup-a-webhook-with-jotform/).
+  contact:
+    name: Jotform API Documentation
+    url: https://api.jotform.com/docs/
+  license:
+    name: Proprietary
+defaultContentType: multipart/form-data
+servers:
+  subscriber:
+    url: '{webhookURL}'
+    protocol: https
+    description: |
+      The subscriber-hosted HTTPS endpoint registered with Jotform via
+      POST /form/{formID}/webhooks. Jotform POSTs each form submission
+      event to this URL.
+    variables:
+      webhookURL:
+        description: The full HTTPS URL registered as a webhook for a Jotform form.
+        default: https://example.com/jotform-webhook
+channels:
+  form/{formID}/submission:
+    description: |
+      Channel representing form submissions for a given Jotform form.
+      Jotform publishes a submission event to the subscriber's webhook URL
+      whenever a new submission is received by the form identified by
+      formID.
+    parameters:
+      formID:
+        description: Jotform form identifier (numeric string).
+        schema:
+          type: string
+          pattern: '^[0-9]+$'
+          example: '203112345678901'
+    subscribe:
+      summary: Receive a Jotform form submission event.
+      description: |
+        Subscriber receives an HTTP POST from Jotform with a
+        multipart/form-data body describing a single form submission.
+      operationId: receiveFormSubmission
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/FormSubmissionEvent'
+components:
+  messages:
+    FormSubmissionEvent:
+      name: FormSubmissionEvent
+      title: Jotform Form Submission Event
+      summary: A new submission was received for a Jotform form.
+      contentType: multipart/form-data
+      payload:
+        $ref: '#/components/schemas/FormSubmissionEvent'
+      examples:
+        - name: minimalSubmission
+          summary: Minimal submission webhook payload (form-encoded fields).
+          payload:
+            formID: '203112345678901'
+            submissionID: '5123456789012345678'
+            type: 'WEB'
+            rawRequest: '{"q3_name":{"first":"Kin","last":"Lane"},"q4_email":"kin@example.com"}'
+  schemas:
+    FormSubmissionEvent:
+      type: object
+      description: |
+        Jotform delivers webhook events as multipart/form-data. Each part
+        is a top-level form field. The rawRequest part carries the actual
+        submitted answers as a JSON-encoded string keyed by Jotform's
+        question identifiers (for example q3_name, q4_email).
+      required:
+        - formID
+        - submissionID
+        - rawRequest
+        - type
+      properties:
+        formID:
+          type: string
+          description: Identifier of the Jotform form that produced this submission.
+          example: '203112345678901'
+        submissionID:
+          type: string
+          description: Unique identifier of this submission.
+          example: '5123456789012345678'
+        type:
+          type: string
+          description: |
+            Submission origin/type as classified by Jotform (for example
+            WEB for a standard web submission).
+          example: 'WEB'
+        rawRequest:
+          type: string
+          format: json
+          description: |
+            JSON-encoded string containing the submitted answers keyed by
+            Jotform question identifiers (e.g. q3_name, q4_email). The
+            value of each key may itself be a string or an object,
+            depending on the field type.
+          example: '{"q3_name":{"first":"Kin","last":"Lane"},"q4_email":"kin@example.com"}'
