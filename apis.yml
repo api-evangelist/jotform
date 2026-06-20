@@ -8,7 +8,7 @@ description: >-
   folders, users, files and webhooks across three regional/compliance
   endpoints (US standard, EU, HIPAA). API-key authentication via header or
   query string.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Forms
   - Surveys
@@ -27,7 +27,7 @@ apis:
       Standard Jotform API. Read/write access to forms, submissions, reports,
       folders, files, system, user and webhooks endpoints. APIKEY header
       authentication.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://api.jotform.com/docs/
     baseURL: https://api.jotform.com
     tags:
@@ -51,7 +51,7 @@ apis:
     description: >-
       EU-resident variant of the Jotform API for customers on EU plans / EU
       data residency.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://api.jotform.com/docs/
     baseURL: https://eu-api.jotform.com
     tags:
@@ -63,7 +63,7 @@ apis:
     description: >-
       HIPAA-compliant variant of the Jotform API for healthcare customers on
       Gold/Enterprise tiers.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://api.jotform.com/docs/
     baseURL: https://hipaa-api.jotform.com
     tags:
