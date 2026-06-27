@@ -44,7 +44,7 @@ apis:
         url: openapi/jotform-openapi.yml
       - type: AsyncAPI
         url: asyncapi/jotform-asyncapi.yml
-      - type: SDK
+      - type: SDKs
         url: https://github.com/jotform
   - aid: jotform:rest-eu
     name: Jotform REST API (EU)
