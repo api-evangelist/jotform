@@ -71,6 +71,14 @@ apis:
       - HIPAA
       - Healthcare
 common:
+  - type: VulnerabilityDisclosure
+    url: security/jotform-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/jotform-domain-security.yml
+  - type: Authentication
+    url: authentication/jotform-authentication.yml
+  - url: https://www.jotform.com/blog/
+    type: Blog
   - type: LinkedIn
     url: https://www.linkedin.com/company/jotform
   - type: Website
