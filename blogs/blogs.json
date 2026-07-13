@@ -1,0 +1,14 @@
+{
+  "repo": "jotform",
+  "feeds": [
+    {
+      "source": "https://www.jotform.com/blog/",
+      "feed_url": "https://www.jotform.com/blog/feed/",
+      "title": "",
+      "saved": 14,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 44
+}
