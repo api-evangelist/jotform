@@ -71,6 +71,8 @@ apis:
       - HIPAA
       - Healthcare
 common:
+  - type: AgenticAccess
+    url: agentic-access/jotform-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/jotform-vulnerability-disclosure.yml
   - type: DomainSecurity
