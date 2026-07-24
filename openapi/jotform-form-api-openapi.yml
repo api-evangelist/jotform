@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Jotform REST Folder Form API
+  description: 'Jotform is an online form builder. The REST API exposes forms,
+
+    submissions, reports, folders, users, files, system, labels and webhooks.
+
+    Authentication is performed with an API key sent either as the APIKEY
+
+    HTTP header or the apiKey query string parameter. The API is available on
+
+    three regional/compliance hostnames: standard (api.jotform.com), EU
+
+    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Jotform API Documentation
+    url: https://api.jotform.com/docs/
+servers:
+- url: https://api.jotform.com
+  description: Standard (US)
+- url: https://eu-api.jotform.com
+  description: EU
+- url: https://hipaa-api.jotform.com
+  description: HIPAA
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Form
+paths:
+  /user/forms:
+    get:
+      tags:
+      - Form
+      summary: List forms owned by the user
+      operationId: getUserForms
+      responses:
+        '200':
+          description: Form collection.
+  /form/{formID}:
+    get:
+      tags:
+      - Form
+      summary: Get information about a form
+      operationId: getForm
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Form metadata.
+    delete:
+      tags:
+      - Form
+      summary: Delete a form
+      operationId: deleteForm
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Deletion result.
+  /form/{formID}/questions:
+    get:
+      tags:
+      - Form
+      summary: List all questions in a form
+      operationId: getFormQuestions
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Question collection.
+  /form/{formID}/question/{questionID}:
+    get:
+      tags:
+      - Form
+      summary: Get a single question by ID
+      operationId: getFormQuestion
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      - in: path
+        name: questionID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Question.
+    delete:
+      tags:
+      - Form
+      summary: Delete a question from a form
+      operationId: deleteFormQuestion
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      - in: path
+        name: questionID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion result.
+  /form/{formID}/properties:
+    get:
+      tags:
+      - Form
+      summary: Get all properties of a form
+      operationId: getFormProperties
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Properties collection.
+  /form/{formID}/properties/{propertyKey}:
+    get:
+      tags:
+      - Form
+      summary: Get a single property value of a form
+      operationId: getFormProperty
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      - in: path
+        name: propertyKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Property value.
+  /form/{formID}/submissions:
+    get:
+      tags:
+      - Form
+      summary: List the submissions of a form
+      operationId: getFormSubmissions
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Submission collection.
+    post:
+      tags:
+      - Form
+      summary: Submit data to a form (create a new submission)
+      operationId: createFormSubmission
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Newly created submission.
+  /form/{formID}/files:
+    get:
+      tags:
+      - Form
+      summary: List files uploaded to a form
+      operationId: getFormFiles
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: File collection.
+  /form/{formID}/reports:
+    get:
+      tags:
+      - Form
+      summary: List reports for a form
+      operationId: getFormReports
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Report collection.
+    post:
+      tags:
+      - Form
+      summary: Create a new report for a form
+      operationId: createFormReport
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - title
+              - list_type
+              properties:
+                title:
+                  type: string
+                list_type:
+                  type: string
+                  enum:
+                  - grid
+                  - table
+                  - csv
+                  - excel
+                  - calendar
+                  - rss
+                fields:
+                  type: string
+      responses:
+        '200':
+          description: Newly created report.
+  /form/{formID}/clone:
+    post:
+      tags:
+      - Form
+      summary: Clone an existing form
+      operationId: cloneForm
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Newly cloned form.
+components:
+  parameters:
+    FormID:
+      in: path
+      name: formID
+      required: true
+      schema:
+        type: string
+      description: Identifier of the Jotform form.
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: APIKEY
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey

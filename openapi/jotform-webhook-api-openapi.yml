@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: Jotform REST Folder Webhook API
+  description: 'Jotform is an online form builder. The REST API exposes forms,
+
+    submissions, reports, folders, users, files, system, labels and webhooks.
+
+    Authentication is performed with an API key sent either as the APIKEY
+
+    HTTP header or the apiKey query string parameter. The API is available on
+
+    three regional/compliance hostnames: standard (api.jotform.com), EU
+
+    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Jotform API Documentation
+    url: https://api.jotform.com/docs/
+servers:
+- url: https://api.jotform.com
+  description: Standard (US)
+- url: https://eu-api.jotform.com
+  description: EU
+- url: https://hipaa-api.jotform.com
+  description: HIPAA
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Webhook
+paths:
+  /form/{formID}/webhooks:
+    get:
+      tags:
+      - Webhook
+      summary: List webhooks for a form
+      operationId: getFormWebhooks
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      responses:
+        '200':
+          description: Webhook collection.
+    post:
+      tags:
+      - Webhook
+      summary: Register a new webhook for a form
+      operationId: createFormWebhook
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - webhookURL
+              properties:
+                webhookURL:
+                  type: string
+                  format: uri
+      responses:
+        '200':
+          description: Newly created webhook.
+  /form/{formID}/webhooks/{webhookID}:
+    delete:
+      tags:
+      - Webhook
+      summary: Delete a webhook
+      operationId: deleteFormWebhook
+      parameters:
+      - $ref: '#/components/parameters/FormID'
+      - in: path
+        name: webhookID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion result.
+components:
+  parameters:
+    FormID:
+      in: path
+      name: formID
+      required: true
+      schema:
+        type: string
+      description: Identifier of the Jotform form.
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: APIKEY
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey

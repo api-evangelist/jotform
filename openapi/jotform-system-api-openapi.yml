@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Jotform REST Folder System API
+  description: 'Jotform is an online form builder. The REST API exposes forms,
+
+    submissions, reports, folders, users, files, system, labels and webhooks.
+
+    Authentication is performed with an API key sent either as the APIKEY
+
+    HTTP header or the apiKey query string parameter. The API is available on
+
+    three regional/compliance hostnames: standard (api.jotform.com), EU
+
+    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Jotform API Documentation
+    url: https://api.jotform.com/docs/
+servers:
+- url: https://api.jotform.com
+  description: Standard (US)
+- url: https://eu-api.jotform.com
+  description: EU
+- url: https://hipaa-api.jotform.com
+  description: HIPAA
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: System
+paths:
+  /system/plan/{planName}:
+    get:
+      tags:
+      - System
+      summary: Get account plan limits and pricing
+      operationId: getSystemPlan
+      parameters:
+      - in: path
+        name: planName
+        required: true
+        schema:
+          type: string
+          enum:
+          - FREE
+          - STARTER
+          - BRONZE
+          - SILVER
+          - GOLD
+          - ENTERPRISE
+      responses:
+        '200':
+          description: Plan information.
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: APIKEY
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey

@@ -1,0 +1,224 @@
+openapi: 3.1.0
+info:
+  title: Jotform REST Folder User API
+  description: 'Jotform is an online form builder. The REST API exposes forms,
+
+    submissions, reports, folders, users, files, system, labels and webhooks.
+
+    Authentication is performed with an API key sent either as the APIKEY
+
+    HTTP header or the apiKey query string parameter. The API is available on
+
+    three regional/compliance hostnames: standard (api.jotform.com), EU
+
+    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Jotform API Documentation
+    url: https://api.jotform.com/docs/
+servers:
+- url: https://api.jotform.com
+  description: Standard (US)
+- url: https://eu-api.jotform.com
+  description: EU
+- url: https://hipaa-api.jotform.com
+  description: HIPAA
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: User
+paths:
+  /user:
+    get:
+      tags:
+      - User
+      summary: Get user details
+      operationId: getUser
+      responses:
+        '200':
+          description: User account information.
+  /user/usage:
+    get:
+      tags:
+      - User
+      summary: Get monthly user API usage and limits
+      operationId: getUserUsage
+      responses:
+        '200':
+          description: Usage information.
+  /user/settings:
+    get:
+      tags:
+      - User
+      summary: Get user account settings
+      operationId: getUserSettings
+      responses:
+        '200':
+          description: Settings collection.
+    post:
+      tags:
+      - User
+      summary: Update user account settings
+      operationId: updateUserSettings
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                website:
+                  type: string
+                name:
+                  type: string
+                company:
+                  type: string
+      responses:
+        '200':
+          description: Updated settings.
+  /user/settings/{settingsKey}:
+    get:
+      tags:
+      - User
+      summary: Get a single user settings value by key
+      operationId: getUserSettingByKey
+      parameters:
+      - in: path
+        name: settingsKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Settings value.
+  /user/history:
+    get:
+      tags:
+      - User
+      summary: Get user activity log
+      operationId: getUserHistory
+      responses:
+        '200':
+          description: Activity log entries.
+  /user/submissions:
+    get:
+      tags:
+      - User
+      summary: List all submissions across all forms owned by the user
+      operationId: getUserSubmissions
+      responses:
+        '200':
+          description: Submission collection.
+  /user/subusers:
+    get:
+      tags:
+      - User
+      summary: List sub-users of the account
+      operationId: getUserSubusers
+      responses:
+        '200':
+          description: Sub-user collection.
+  /user/reports:
+    get:
+      tags:
+      - User
+      summary: List reports across all forms owned by the user
+      operationId: getUserReports
+      responses:
+        '200':
+          description: Report collection.
+  /user/forms:
+    get:
+      tags:
+      - User
+      summary: List forms owned by the user
+      operationId: getUserForms
+      responses:
+        '200':
+          description: Form collection.
+  /user/folders:
+    get:
+      tags:
+      - User
+      summary: List the user's folder tree
+      operationId: getUserFolders
+      responses:
+        '200':
+          description: Folder tree.
+  /user/register:
+    post:
+      tags:
+      - User
+      summary: Register a new Jotform user account
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              - email
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Newly registered user.
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: Log a user in and obtain an app key
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                appName:
+                  type: string
+                access:
+                  type: string
+      responses:
+        '200':
+          description: Login response with appKey.
+  /v1/user/logout:
+    get:
+      tags:
+      - User
+      summary: Log the current user out and invalidate the app key
+      operationId: logoutUser
+      responses:
+        '200':
+          description: Logout confirmation.
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: APIKEY
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey
