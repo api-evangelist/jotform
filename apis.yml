@@ -8,7 +8,20 @@ description: >-
   folders, users, files and webhooks across three regional/compliance
   endpoints (US standard, EU, HIPAA). API-key authentication via header or
   query string.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/jotform.png
 tags:
   - Forms
   - Surveys
@@ -21,55 +34,171 @@ created: '2026-05-08'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-  - aid: jotform:rest-us
-    name: Jotform REST API (Standard / US)
-    description: >-
-      Standard Jotform API. Read/write access to forms, submissions, reports,
-      folders, files, system, user and webhooks endpoints. APIKEY header
-      authentication.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://api.jotform.com/docs/
-    baseURL: https://api.jotform.com
-    tags:
-      - REST
-      - Forms
-      - Submissions
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://api.jotform.com/docs/
-      - type: Authentication
-        url: https://api.jotform.com/docs/#authentication
-      - type: OpenAPI
-        url: openapi/jotform-openapi.yml
-      - type: AsyncAPI
-        url: asyncapi/jotform-asyncapi.yml
-      - type: SDKs
-        url: https://github.com/jotform
-  - aid: jotform:rest-eu
-    name: Jotform REST API (EU)
-    description: >-
-      EU-resident variant of the Jotform API for customers on EU plans / EU
-      data residency.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://api.jotform.com/docs/
-    baseURL: https://eu-api.jotform.com
-    tags:
-      - REST
-      - EU
-      - Data Residency
-  - aid: jotform:rest-hipaa
-    name: Jotform REST API (HIPAA)
-    description: >-
-      HIPAA-compliant variant of the Jotform API for healthcare customers on
-      Gold/Enterprise tiers.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://api.jotform.com/docs/
-    baseURL: https://hipaa-api.jotform.com
-    tags:
-      - REST
-      - HIPAA
-      - Healthcare
+- aid: jotform:rest-eu
+  name: Jotform REST API (EU)
+  description: EU-resident variant of the Jotform API for customers on EU plans / EU data residency.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://eu-api.jotform.com
+  tags:
+  - REST
+  - EU
+  - Data Residency
+- aid: jotform:rest-hipaa
+  name: Jotform REST API (HIPAA)
+  description: >-
+    HIPAA-compliant variant of the Jotform API for healthcare customers on Gold/Enterprise tiers.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://hipaa-api.jotform.com
+  tags:
+  - REST
+  - HIPAA
+  - Healthcare
+- aid: jotform:jotform-folder-api
+  name: Jotform Folder API
+  description: The Folder API from Jotform — 3 operation(s) for folder.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - Folder
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-folder-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-form-api
+  name: Jotform Form API
+  description: The Form API from Jotform — 10 operation(s) for form.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - Form
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-form-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-label-api
+  name: Jotform Label API
+  description: The Label API from Jotform — 4 operation(s) for label.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - Label
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-label-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-report-api
+  name: Jotform Report API
+  description: The Report API from Jotform — 3 operation(s) for report.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-report-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-submission-api
+  name: Jotform Submission API
+  description: The Submission API from Jotform — 3 operation(s) for submission.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - Submission
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-submission-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-system-api
+  name: Jotform System API
+  description: The System API from Jotform — 1 operation(s) for system.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-system-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-user-api
+  name: Jotform User API
+  description: The User API from Jotform — 13 operation(s) for user.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-user-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
+- aid: jotform:jotform-webhook-api
+  name: Jotform Webhook API
+  description: The Webhook API from Jotform — 2 operation(s) for webhook.
+  humanURL: https://api.jotform.com/docs/
+  baseURL: https://api.jotform.com
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/jotform-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://api.jotform.com/docs/
+  - type: Authentication
+    url: https://api.jotform.com/docs/#authentication
+  - type: AsyncAPI
+    url: asyncapi/jotform-asyncapi.yml
+  - type: SDKs
+    url: https://github.com/jotform
 common:
   - type: AgenticAccess
     url: agentic-access/jotform-agentic-access.yml
