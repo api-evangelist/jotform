@@ -1,0 +1,28 @@
+{
+  "provider": "jotform",
+  "sources": [
+    "jotform-folder-api-openapi.yml",
+    "jotform-form-api-openapi.yml",
+    "jotform-label-api-openapi.yml",
+    "jotform-report-api-openapi.yml",
+    "jotform-submission-api-openapi.yml",
+    "jotform-system-api-openapi.yml",
+    "jotform-user-api-openapi.yml",
+    "jotform-webhook-api-openapi.yml"
+  ],
+  "outputs": [
+    "jotform-folder-api-openapi.yml",
+    "jotform-form-api-openapi.yml",
+    "jotform-label-api-openapi.yml",
+    "jotform-report-api-openapi.yml",
+    "jotform-submission-api-openapi.yml",
+    "jotform-system-api-openapi.yml",
+    "jotform-user-api-openapi.yml",
+    "jotform-webhook-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
