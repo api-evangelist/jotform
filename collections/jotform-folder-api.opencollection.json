@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the user's folder tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/user/folders"
+          },
+          "docs": "List the user's folder tree"
+        },
+        {
+          "info": {
+            "name": "Create a new folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/folder",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "name",
+                  "value": ""
+                },
+                {
+                  "name": "color",
+                  "value": ""
+                },
+                {
+                  "name": "parent",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new folder"
+        },
+        {
+          "info": {
+            "name": "Get folder details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/folder/:folderID",
+            "params": [
+              {
+                "name": "folderID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get folder details"
+        },
+        {
+          "info": {
+            "name": "Update a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.jotform.com/folder/:folderID",
+            "params": [
+              {
+                "name": "folderID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a folder"
+        },
+        {
+          "info": {
+            "name": "Delete a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/folder/:folderID",
+            "params": [
+              {
+                "name": "folderID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a folder"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

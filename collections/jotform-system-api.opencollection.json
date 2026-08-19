@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder System API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account plan limits and pricing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/system/plan/:planName",
+            "params": [
+              {
+                "name": "planName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get account plan limits and pricing"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

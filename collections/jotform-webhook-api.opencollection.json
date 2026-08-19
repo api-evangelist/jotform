@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder Webhook API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks for a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/webhooks",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List webhooks for a form"
+        },
+        {
+          "info": {
+            "name": "Register a new webhook for a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/form/:formID/webhooks",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "webhookURL",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Register a new webhook for a form"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/form/:formID/webhooks/:webhookID",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              },
+              {
+                "name": "webhookID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

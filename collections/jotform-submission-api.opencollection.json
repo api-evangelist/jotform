@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder Submission API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Submission",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all submissions across all forms owned by the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/user/submissions"
+          },
+          "docs": "List all submissions across all forms owned by the user"
+        },
+        {
+          "info": {
+            "name": "List the submissions of a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/submissions",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List the submissions of a form"
+        },
+        {
+          "info": {
+            "name": "Submit data to a form (create a new submission)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/form/:formID/submissions",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submit data to a form (create a new submission)"
+        },
+        {
+          "info": {
+            "name": "Get a single submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/submission/:submissionID",
+            "params": [
+              {
+                "name": "submissionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single submission"
+        },
+        {
+          "info": {
+            "name": "Edit an existing submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/submission/:submissionID",
+            "params": [
+              {
+                "name": "submissionID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Edit an existing submission"
+        },
+        {
+          "info": {
+            "name": "Delete a submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/submission/:submissionID",
+            "params": [
+              {
+                "name": "submissionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a submission"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

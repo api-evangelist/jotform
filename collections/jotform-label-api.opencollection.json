@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder Label API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Label",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/label",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a label"
+        },
+        {
+          "info": {
+            "name": "Update a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.jotform.com/label/:labelID",
+            "params": [
+              {
+                "name": "labelID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the label."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a label"
+        },
+        {
+          "info": {
+            "name": "Delete a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/label/:labelID",
+            "params": [
+              {
+                "name": "labelID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the label."
+              }
+            ]
+          },
+          "docs": "Delete a label"
+        },
+        {
+          "info": {
+            "name": "Attach resources (forms, submissions) to a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.jotform.com/label/:labelID/add-resources",
+            "params": [
+              {
+                "name": "labelID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the label."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attach resources (forms, submissions) to a label"
+        },
+        {
+          "info": {
+            "name": "Remove resources from a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.jotform.com/label/:labelID/remove-resources",
+            "params": [
+              {
+                "name": "labelID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the label."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove resources from a label"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

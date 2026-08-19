@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder Report API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reports across all forms owned by the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/user/reports"
+          },
+          "docs": "List reports across all forms owned by the user"
+        },
+        {
+          "info": {
+            "name": "List reports for a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/reports",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List reports for a form"
+        },
+        {
+          "info": {
+            "name": "Create a new report for a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/form/:formID/reports",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "title",
+                  "value": ""
+                },
+                {
+                  "name": "list_type",
+                  "value": ""
+                },
+                {
+                  "name": "fields",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new report for a form"
+        },
+        {
+          "info": {
+            "name": "Get details of a single report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/report/:reportID",
+            "params": [
+              {
+                "name": "reportID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details of a single report"
+        },
+        {
+          "info": {
+            "name": "Delete a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/report/:reportID",
+            "params": [
+              {
+                "name": "reportID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a report"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

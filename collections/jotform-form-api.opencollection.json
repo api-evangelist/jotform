@@ -1,0 +1,320 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Jotform REST Folder Form API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "APIKEY",
+      "value": "{{APIKEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List forms owned by the user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/user/forms"
+          },
+          "docs": "List forms owned by the user"
+        },
+        {
+          "info": {
+            "name": "Get information about a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "Get information about a form"
+        },
+        {
+          "info": {
+            "name": "Delete a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/form/:formID",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "Delete a form"
+        },
+        {
+          "info": {
+            "name": "List all questions in a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/questions",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List all questions in a form"
+        },
+        {
+          "info": {
+            "name": "Get a single question by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/question/:questionID",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              },
+              {
+                "name": "questionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single question by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a question from a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.jotform.com/form/:formID/question/:questionID",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              },
+              {
+                "name": "questionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a question from a form"
+        },
+        {
+          "info": {
+            "name": "Get all properties of a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/properties",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "Get all properties of a form"
+        },
+        {
+          "info": {
+            "name": "Get a single property value of a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/properties/:propertyKey",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              },
+              {
+                "name": "propertyKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single property value of a form"
+        },
+        {
+          "info": {
+            "name": "List the submissions of a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/submissions",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List the submissions of a form"
+        },
+        {
+          "info": {
+            "name": "Submit data to a form (create a new submission)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/form/:formID/submissions",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Submit data to a form (create a new submission)"
+        },
+        {
+          "info": {
+            "name": "List files uploaded to a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/files",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List files uploaded to a form"
+        },
+        {
+          "info": {
+            "name": "List reports for a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.jotform.com/form/:formID/reports",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "List reports for a form"
+        },
+        {
+          "info": {
+            "name": "Create a new report for a form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/form/:formID/reports",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "title",
+                  "value": ""
+                },
+                {
+                  "name": "list_type",
+                  "value": ""
+                },
+                {
+                  "name": "fields",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new report for a form"
+        },
+        {
+          "info": {
+            "name": "Clone an existing form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.jotform.com/form/:formID/clone",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the Jotform form."
+              }
+            ]
+          },
+          "docs": "Clone an existing form"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
