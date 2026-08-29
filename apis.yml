@@ -8,6 +8,18 @@ description: >-
   folders, users, files and webhooks across three regional/compliance
   endpoints (US standard, EU, HIPAA). API-key authentication via header or
   query string.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
