@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Jotform REST Folder Label API
+  title: Jotform REST Label API
   description: 'Jotform is an online form builder. The REST API exposes forms,
 
     submissions, reports, folders, users, files, system, labels and webhooks.
@@ -11,9 +11,7 @@ info:
 
     three regional/compliance hostnames: standard (api.jotform.com), EU
 
-    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).
-
-    '
+    (eu-api.jotform.com), and HIPAA (hipaa-api.jotform.com).'
   version: 1.0.0
   contact:
     name: Jotform API Documentation
