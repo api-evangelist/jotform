@@ -170,7 +170,7 @@
     - alpha
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: jotform-fivetran
   label: Fivetran
@@ -196,7 +196,7 @@
     - connectors/applications/jotform
     vendor_link: https://www.jotform.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: jotform-meltano
   label: Meltano
@@ -226,5 +226,5 @@
     quality:
     - gold
     builder: 'community (Meltano Hub variant maintainers: hotgluexyz, reservoir-data)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
