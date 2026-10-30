@@ -1,4 +1,4 @@
-# Jotform (jotform)
+# Jotform
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,99 +66,152 @@
 
 Jotform is an online form builder with strong workflow, payments and data collection capabilities. The Jotform API exposes forms, submissions, reports, folders, users, files and webhooks across three regional/compliance endpoints (US standard, EU, HIPAA). API-key authentication via header or query string.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/jotform/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/jotform/refs/heads/main/apis.yml)
+**Areas:** Forms · Surveys · No-Code · Data Collection · Workflows · HIPAA · EU
 
-## Tags
+## Jotform on APIs.io
 
-- Forms
-- Surveys
-- No-Code
-- Data Collection
-- Workflow
-- HIPAA
-- EU
+Everything profiled for Jotform is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/jotform/](https://apis.io/providers/jotform/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (10)
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-30
+- [Jotform REST API (EU)](https://apis.io/apis/jotform/rest-eu/) — EU-resident variant of the Jotform API for customers on EU plans / EU data residency.
+- [Jotform REST API (HIPAA)](https://apis.io/apis/jotform/rest-hipaa/) — HIPAA-compliant variant of the Jotform API for healthcare customers on Gold/Enterprise tiers.
+- [Jotform Folder API](https://apis.io/apis/jotform/jotform-folder-api/) — The Folder API from Jotform — 3 operation(s) for folder.
+- [Jotform Form API](https://apis.io/apis/jotform/jotform-form-api/) — The Form API from Jotform — 10 operation(s) for form.
+- [Jotform Label API](https://apis.io/apis/jotform/jotform-label-api/) — The Label API from Jotform — 4 operation(s) for label.
+- [Jotform Report API](https://apis.io/apis/jotform/jotform-report-api/) — The Report API from Jotform — 3 operation(s) for report.
+- [Jotform Submission API](https://apis.io/apis/jotform/jotform-submission-api/) — The Submission API from Jotform — 3 operation(s) for submission.
+- [Jotform System API](https://apis.io/apis/jotform/jotform-system-api/) — The System API from Jotform — 1 operation(s) for system.
+- [Jotform User API](https://apis.io/apis/jotform/jotform-user-api/) — The User API from Jotform — 13 operation(s) for user.
+- [Jotform Webhook API](https://apis.io/apis/jotform/jotform-webhook-api/) — The Webhook API from Jotform — 2 operation(s) for webhook.
 
-## APIs
+### Published properties
 
-### Jotform REST API (Standard / US)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Standard Jotform API. Read/write access to forms, submissions, reports, folders, files, system, user and webhooks endpoints. APIKEY header authentication.
+#### AsyncAPI (1)
 
-- **Human URL:** [https://api.jotform.com/docs/](https://api.jotform.com/docs/)
-- **Base URL:** `https://api.jotform.com`
+Event-driven and webhook contracts.
 
-#### Tags
+- [Jotform Webhooks AsyncAPI](https://apis.io/asyncapis/jotform/jotform-asyncapi/)
 
-- REST
-- Forms
-- Submissions
-- Webhooks
+#### Event channels (1)
 
-#### Properties
+Individual events and webhooks the provider emits.
 
-- [Documentation](https://api.jotform.com/docs/)
-- [Authentication](https://api.jotform.com/docs/#authentication)
-- [OpenAPI](openapi/jotform-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/jotform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jotform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/jotform-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [SDK](https://github.com/jotform)
+- [form/{formID}/submission](https://apis.io/channels/jotform/form-formid-submission/)
 
-### Jotform REST API (EU)
+#### Agentic access (1)
 
-EU-resident variant of the Jotform API for customers on EU plans / EU data residency.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://api.jotform.com/docs/](https://api.jotform.com/docs/)
-- **Base URL:** `https://eu-api.jotform.com`
+- [Jotform Agentic Access](https://apis.io/agentic-access/jotform/jotform-agentic-access/)
 
-#### Tags
+#### Collections (9)
 
-- REST
-- EU
-- Data Residency
+Postman and Open Collection request collections.
 
-#### Properties
+- [Jotform REST API](https://apis.io/collections/jotform/open-jotform/)
+- [Jotform REST Folder API](https://apis.io/collections/jotform/open-jotform-folder-api/)
+- [Jotform REST Folder Form API](https://apis.io/collections/jotform/open-jotform-form-api/)
+- [Jotform REST Folder Label API](https://apis.io/collections/jotform/open-jotform-label-api/)
+- [Jotform REST Folder Report API](https://apis.io/collections/jotform/open-jotform-report-api/)
+- [Jotform REST Folder Submission API](https://apis.io/collections/jotform/open-jotform-submission-api/)
+- [Jotform REST Folder System API](https://apis.io/collections/jotform/open-jotform-system-api/)
+- [Jotform REST Folder User API](https://apis.io/collections/jotform/open-jotform-user-api/)
+- [Jotform REST Folder Webhook API](https://apis.io/collections/jotform/open-jotform-webhook-api/)
 
-- [Postman Collection](collections/jotform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jotform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (1)
 
-### Jotform REST API (HIPAA)
+Spectral rulesets for the provider's contracts.
 
-HIPAA-compliant variant of the Jotform API for healthcare customers on Gold/Enterprise tiers.
+- [Jotform — asyncapi rules](https://apis.io/rules/jotform/jotform-asyncapi-spectral-rules/)
 
-- **Human URL:** [https://api.jotform.com/docs/](https://api.jotform.com/docs/)
-- **Base URL:** `https://hipaa-api.jotform.com`
+#### Security (3)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- REST
-- HIPAA
-- Healthcare
+- [Jotform Authentication](https://apis.io/security/jotform/jotform-authentication/)
+- [Jotform Domain Security](https://apis.io/security/jotform/jotform-domain-security/)
+- [Jotform Vulnerability Disclosure](https://apis.io/security/jotform/jotform-vulnerability-disclosure/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Postman Collection](collections/jotform.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/jotform.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-## Common Properties
+- [Jotform Plans Pricing](https://apis.io/plans/jotform/jotform-plans-pricing/)
 
-- [LinkedIn](https://www.linkedin.com/company/jotform)
+#### Rate limits (1)
+
+Published request limits.
+
+- [Jotform Rate Limits](https://apis.io/rate-limits/jotform/jotform-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Jotform Finops](https://apis.io/finops/jotform/jotform-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.jotform.com/)
 - [Documentation](https://api.jotform.com/docs/)
 - [Pricing](https://www.jotform.com/pricing/)
-- [Git Hub](https://github.com/jotform)
-- [Status Page](https://status.jotform.com/)
-- [Plans](plans/jotform-plans-pricing.yml)
-- [Rate Limits](rate-limits/jotform-rate-limits.yml)
-- [Fin Ops](finops/jotform-finops.yml)
-- [Integrations](https://www.jotform.com/integrations/)
+- [Blog](https://www.jotform.com/blog/)
+- [Status](https://status.jotform.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 53.0 |
+| Contract governance | 13.6 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 18.4 |
+
+**Agent readiness 19.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/jotform/](https://apis.io/providers/jotform/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Jotform: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/jotform/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
